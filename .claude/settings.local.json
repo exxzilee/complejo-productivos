@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python .claude/skills/ui-ux-pro-max/scripts/search.py \"gaming tournament racing esports modern soft rounded\" --design-system -p \"Picadas AR\" -f markdown)",
+      "WebFetch(domain:www.framer.com)",
+      "WebFetch(domain:8cd817e7-6311-4f7a-a90b-8b6d594edc24.claudeusercontent.com)",
+      "Bash(grep -E \"\\\\.\\(html|js\\)$|^d\")",
+      "Bash(grep -E \"\\\\.html$|\\\\.js$|\\\\.json$|\\\\.env|rules\")",
+      "Bash(unzip -p Resumen_Complejo_Productivo_Arroz.docx word/document.xml)",
+      "Bash(unzip -p Guion_Oral_Complejo_Productivo_Arroz.docx word/document.xml)",
+      "PowerShell(npm install --silent 2>&1)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(npx vite *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
