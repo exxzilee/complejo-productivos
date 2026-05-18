@@ -51,16 +51,18 @@ export default function ActorsGrid() {
                 hovered === i ? 'border-gold-accent/60 -translate-y-1.5 bg-ink-800/70' : ''
               }`}
             >
-              <span className="eyebrow text-bone-300/60">
+              <span className="eyebrow text-bone-300/75">
                 0{i + 1}
               </span>
-              <h3 className="absolute bottom-9 md:bottom-5 left-4 right-4 md:left-5 md:right-5 font-display text-lg md:text-2xl text-bone-50 leading-tight">
-                {a.name}
-              </h3>
-              {/* Mobile: always show detail below name; Desktop: reveal on hover */}
-              <p className="absolute bottom-3 left-4 right-4 text-bone-300/70 text-[0.65rem] leading-tight font-light md:hidden">
-                {a.detail}
-              </p>
+              {/* Mobile: title + detail stacked at bottom (no absolute overlap) */}
+              <div className="absolute bottom-4 left-4 right-4 md:bottom-5 md:left-5 md:right-5 space-y-1.5 md:space-y-0">
+                <h3 className="font-display text-base md:text-2xl text-bone-50 leading-tight">
+                  {a.name}
+                </h3>
+                <p className="text-bone-300/85 text-[0.7rem] leading-snug font-light md:hidden">
+                  {a.detail}
+                </p>
+              </div>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={hovered === i ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}

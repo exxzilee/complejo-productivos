@@ -141,7 +141,7 @@ export default function MapSection() {
         ref={ref}
       >
         {/* ── Stats column ── */}
-        <div className="lg:col-span-5 order-2 lg:order-1 relative min-h-[1px]">
+        <div className={`lg:col-span-5 ${active ? 'order-1' : 'order-2'} lg:order-1 relative min-h-[1px]`}>
           <AnimatePresence mode="wait">
             {!active && (
               <motion.div
@@ -264,16 +264,16 @@ export default function MapSection() {
         </div>
 
         {/* ── Map column ── */}
-        <div className="lg:col-span-7 order-1 lg:order-2 flex items-center justify-center relative">
+        <div className={`lg:col-span-7 ${active ? 'order-2' : 'order-1'} lg:order-2 flex items-center justify-center relative`}>
           <motion.div
             initial={false}
             animate={{
-              x: active ? (prefersReducedMotion ? 0 : '-55%') : 0,
-              opacity: active ? 0.12 : 1,
-              scale: active ? 0.85 : 1
+              x: active && isLg && !prefersReducedMotion ? '-55%' : 0,
+              opacity: active ? (isLg ? 0.12 : 0) : 1,
+              scale: active && isLg ? 0.85 : 1
             }}
             transition={{ duration: 0.8, ease }}
-            className="relative w-full max-w-[360px] lg:max-w-[420px]"
+            className="relative w-full max-w-[240px] sm:max-w-[300px] lg:max-w-[420px]"
             style={{ willChange: 'transform, opacity' }}
           >
             <div
@@ -326,7 +326,7 @@ export default function MapSection() {
                 <motion.div
                   whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
                   transition={{ duration: 0.4, ease }}
-                  className="relative w-full max-w-[400px] lg:max-w-[460px]"
+                  className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[460px]"
                   style={{ aspectRatio: '504 / 1056' }}
                 >
                   <img
@@ -340,10 +340,10 @@ export default function MapSection() {
                     }}
                   />
 
-                  {/* Close hint — appears on hover over the province */}
+                  {/* Close hint — only on lg+ (mobile uses "Volver al mapa" button in stats column) */}
                   <span
                     aria-hidden
-                    className="pointer-events-none absolute left-1/2 bottom-[6%] -translate-x-1/2 flex items-center gap-2 opacity-60 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-500"
+                    className="pointer-events-none absolute left-1/2 bottom-[6%] -translate-x-1/2 hidden lg:flex items-center gap-2 opacity-60 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-500"
                     style={{ color: active.accent }}
                   >
                     <span

@@ -53,9 +53,9 @@ export const sectors = [
     name: 'Sector Industrial',
     short: 'Molienda',
     desc: 'Procesamiento del arroz en molinos arroceros: secado, limpieza y empaquetado.',
-    // Interior of a grain/food processing facility — industrial setting
-    image: 'https://images.unsplash.com/photo-1565017228801-b8bce6b3ebc0?w=1920&q=85&auto=format&fit=crop',
-    imageAlt: 'Interior de molino arrocero',
+    // Grain mill exterior — silos and processing facility ("Gold Medal Flour")
+    image: 'https://images.unsplash.com/photo-1653966877135-878fc483877c?w=1920&q=85&auto=format&fit=crop',
+    imageAlt: 'Silos de un molino industrial',
     bullets: [
       'Secado del grano',
       'Limpieza y descascarillado',

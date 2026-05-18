@@ -21,7 +21,7 @@ export default function SectorDetail({ id, eyebrow, index, sector, reverse = fal
     <section
       id={id}
       ref={ref}
-      className="relative min-h-screen w-full flex items-center overflow-hidden bg-ink-950"
+      className="relative min-h-screen min-h-[100svh] w-full flex items-center overflow-hidden bg-ink-950"
     >
       {/* Eyebrow */}
       <motion.div
@@ -38,7 +38,7 @@ export default function SectorDetail({ id, eyebrow, index, sector, reverse = fal
       </motion.div>
 
       {/* Grid — image and text swap sides per `reverse` */}
-      <div className="relative w-full grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+      <div className="relative w-full grid grid-cols-1 lg:grid-cols-2 min-h-screen lg:min-h-[100svh]">
 
         {/* ── Image panel ── */}
         <div className={`relative overflow-hidden min-h-[45vh] lg:min-h-screen ${reverse ? 'lg:order-2' : 'lg:order-1'}`}>
