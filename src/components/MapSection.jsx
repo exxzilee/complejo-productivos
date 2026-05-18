@@ -110,7 +110,17 @@ export default function MapSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { amount: 0.35, once: false })
   const [selected, setSelected] = useState(null) // 'corrientes' | 'entrerios' | null
+  const [isLg, setIsLg] = useState(false)
   const prefersReducedMotion = useReducedMotion()
+
+  // Track lg breakpoint (1024px) for responsive offsets
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    setIsLg(mq.matches)
+    const handler = (e) => setIsLg(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
 
   // Escape key returns to overview
   useEffect(() => {
@@ -262,8 +272,9 @@ export default function MapSection() {
               opacity: active ? 0.12 : 1,
               scale: active ? 0.85 : 1
             }}
-            transition={{ duration: 1, ease }}
+            transition={{ duration: 0.8, ease }}
             className="relative w-full max-w-[360px] lg:max-w-[420px]"
+            style={{ willChange: 'transform, opacity' }}
           >
             <div
               className="relative w-full"
@@ -306,24 +317,26 @@ export default function MapSection() {
                 onClick={() => setSelected(null)}
                 key={`prov-${active.id}`}
                 initial={{ opacity: 0, scale: 0.85, x: prefersReducedMotion ? 0 : 30, y: prefersReducedMotion ? 0 : 10 }}
-                animate={{ opacity: 1, scale: 1, x: 0, y: active.id === 'corrientes' ? '12%' : 0 }}
+                animate={{ opacity: 1, scale: 1, x: 0, y: active.id === 'corrientes' && isLg ? '12%' : 0 }}
                 exit={{ opacity: 0, scale: 0.92, x: prefersReducedMotion ? 0 : 10 }}
-                transition={{ duration: 1, ease, delay: 0.1 }}
-                whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
+                transition={{ duration: 0.8, ease, delay: 0.1 }}
                 className="group absolute inset-0 flex items-center justify-center cursor-pointer focus:outline-none"
+                style={{ willChange: 'transform, opacity' }}
               >
-                <div
-                  className="relative w-full max-w-[520px] lg:max-w-[640px] xl:max-w-[720px]"
+                <motion.div
+                  whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
+                  transition={{ duration: 0.4, ease }}
+                  className="relative w-full max-w-[400px] lg:max-w-[460px]"
                   style={{ aspectRatio: '504 / 1056' }}
                 >
                   <img
                     src={active.asset}
                     alt={`Provincia de ${active.name}`}
                     draggable={false}
-                    className="absolute inset-0 w-full h-full object-contain select-none transition-all duration-700 ease-cinema"
+                    className="absolute inset-0 w-full h-full object-contain select-none"
                     style={{
-                      filter: `${BASE_FILTER} drop-shadow(0 0 60px ${active.accent}99) drop-shadow(0 0 120px ${active.accent}55)`,
-                      mixBlendMode: 'screen'
+                      filter: `${BASE_FILTER} drop-shadow(0 0 32px ${active.accent}AA)`,
+                      willChange: 'transform, opacity'
                     }}
                   />
 
@@ -351,7 +364,7 @@ export default function MapSection() {
                       Cerrar
                     </span>
                   </span>
-                </div>
+                </motion.div>
               </motion.button>
             )}
           </AnimatePresence>
